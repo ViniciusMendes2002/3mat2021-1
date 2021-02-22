@@ -16,10 +16,15 @@ console.log(a == c)
 console.log(a != c)
 console.log('-----------------------------------------------')
 
-
-
-
-
+// Boolean
+a = true
+b = false
+c = true
+console.log(a > b)
+console.log(a < b)
+console.log(a == c)
+console.log(a != c)
+console.log('-----------------------------------------------')
 
 // Vetores
 a = [1, 2, 3, 4, 5]
@@ -36,7 +41,7 @@ console.log('-----------------------------------------------')
 // CONCLUSÃO: vetores NÃO SÃO diretamente comparáveis entre si
 
 
-//Obejetos
+//Objetos
 a = { marca: 'Volkswagen', modelo: 'Fusca', ano: 1976 }
 b = { marca: 'Fiat', modelo: '147', ano: 1980 }
 c = { marca: 'Volkswagen', modelo: 'Fusca', ano: 1976 }
