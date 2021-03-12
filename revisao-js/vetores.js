@@ -26,16 +26,28 @@ let terceiraFruta = frutas.splice(2, 1) //Fruta na posição 2
 console.log(frutas)
 console.log(terceiraFruta) // splice() sempre retorna um vetor
 
+<<<<<<< HEAD
 // Inserindo um elemento no fim do vetor
 frutas.push('jabuticaba')
 
 console.log(frutas)
 
 // Inserir um elemento no início do vetor
+=======
+
+// Inserindo um elemento no fim do vetor
+frutas.push('jabuticaba')
+
+
+console.log(frutas)
+
+//Inserir elementos no início do vetor
+>>>>>>> 3b7d630cb023eb9f96ab3ec57dc15a79c5653f50
 frutas.unshift('amora')
 
 console.log(frutas)
 
+<<<<<<< HEAD
 // Inserindo em posição intermediária
 // splice() para inserção
 // 1º parâmetro: a posição onde ocorrerá a inserção
@@ -102,3 +114,27 @@ console.log('----------------------------------------')
 
 // forEach() utilizando arrow function parâmetro
 frutas.forEach(fruta => console.log(fruta))
+=======
+
+// Inserindo em posição intermediaria
+//splice() para inserção
+// 1° Parâmetro: a posição onde ocorrerá a inserção
+// 2° Parâmetro: quantos elementos serão excluídos (0)
+// Parâmetros seguintes: elementos a serem inseridos
+
+// Inserindo na 4° posição
+frutas.splice(3, 0, 'pêssego')
+console.log(frutas)
+
+
+// Inserindo duas frutas na terceira posição
+frutas.splice(2, 0, 'caquí', 'jaca')
+console.log(frutas)
+
+
+// Substituindo a 6° fruta
+frutas.splice(5, 1, 'abacate')
+console.log(frutas)
+
+
+>>>>>>> 3b7d630cb023eb9f96ab3ec57dc15a79c5653f50
