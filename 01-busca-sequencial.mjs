@@ -126,3 +126,24 @@ console.timeEnd('Buscando 4441')
 console.time('Buscando 0')
 console.log(buscaSequencial(primos, 0))
 console.timeEnd('Buscando 0')
+
+console.log('---------------------------------------------')
+
+import { nomes } from './includes/vetor-nomes.mjs'
+
+console.time('Buscando ORKUTILSON')
+console.log(buscaSequencial(nomes, 'ORKUTILSON'))
+console.timeEnd('Buscando ORKUTILSON')
+
+console.time('Buscando ABRAAO')
+console.log(buscaSequencial(nomes, 'ABRAAO'))
+console.timeEnd('Buscando ABRAAO')
+
+console.time('Buscando ZELIA')
+console.log(buscaSequencial(nomes, 'ZELIA'))
+console.timeEnd('Buscando ZELIA')
+
+console.time('Buscando FAUSTO')
+console.log(buscaSequencial(nomes, 'FAUSTO'))
+console.timeEnd('Buscando FAUSTO')
+
