@@ -39,3 +39,4 @@
  console.log(buscaSequencial(objNomes, (objNome) => objNome.group_name === 'ABRAAO'))
  console.timeEnd('Buscando group_name ABRAAO')
  
+ 
