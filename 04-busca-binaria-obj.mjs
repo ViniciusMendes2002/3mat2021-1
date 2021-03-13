@@ -8,17 +8,19 @@ function buscaBinaria(vetor, fnComp) {
     while (fim >= ini) {
         meio = Math.floor((fim + ini) / 2) // Math.floor() arredonda para baixo
         //console.log({ini, fim, meio, valorBusca})
-        if (fnComp(vetor[meio] === 0)) {
-            comps++
-            return meio // Achou
-        }
-        else if (fnComp(vetor[meio]) < 0) {
-            comps += 2
-            fim = meio - 1
-        }
-        else {
-            comps += 2
-            ini = meio + 1
+        switch(fnComp(vetor[meio])){
+            case 0:
+                comps++
+                return meio // Achou
+                
+            case -1:
+                comps += 2
+                fim = meio - 1
+                break
+
+            default:
+                comps += 2
+                ini = meio + 1
         }
     }
     return -1   // Valor de busca não existe no vetor
@@ -27,16 +29,14 @@ function buscaBinaria(vetor, fnComp) {
 // Retornos da arrow function para busca binária
 //  0: igualdade
 // -1: o valor de busca é MENOR que o valor do objeto comparado
-//  1: O valor de busca é MAIOR que o valor do objeto comparado
+//  1: o valor de busca é MAIOR que o valor do objeto comparado 
 const comparaNomeBin = obj => {
-    if (obj.firstname === 'FAUSTO') return 0
-    else if('FAUSTO' < obj.firstname) return -1
+    if(obj.first_name === 'FAUSTO') return 0
+    else if('FAUSTO' < obj.first_name) return -1
     else return 1
 }
 
-
 import { objNomes } from './includes/vetor-obj-nomes.mjs'
-
 
 console.time('Buscando ZILMAR')
 console.log(buscaBinaria(objNomes, obj => {
@@ -66,3 +66,12 @@ let posEncontrado = buscaBinaria(objNomes, obj => {
 console.timeEnd('Buscando nome ABRAAO')
 
 console.log(objNomes[posEncontrado], {comps})
+
+console.time('Buscando group_name MARIA')
+console.log(buscaBinaria(objNomes, obj => {
+    const valorBusca = 'MARIA'
+    if(objNomes.group_name === valorBusca) return 0
+    else if(valorBusca < obj.group_name) return -1
+    else return 1
+}), {comps})
+console.timeEnd('Buscando group_name MARIA')
