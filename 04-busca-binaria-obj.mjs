@@ -67,6 +67,9 @@ console.timeEnd('Buscando nome ABRAAO')
 
 console.log(objNomes[posEncontrado], {comps})
 
+// Como o conjunto de dados está ordenado por first_name,
+// a busca binária por group_name falha e retorna -1, como
+// se a informação correspondente não existisse no conjunto de dados
 console.time('Buscando group_name MARIA')
 console.log(buscaBinaria(objNomes, obj => {
     const valorBusca = 'MARIA'
