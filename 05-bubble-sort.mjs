@@ -50,11 +50,11 @@ console.log({totTrocas, comps, pass})
 */
 
 
-import { empresas } from './includes/15-mil-empresas.mjs'
+import { nomes } from './includes/100-mil-nomes.mjs'
 
-console.log('Antes:', empresas)
+console.log('Antes:', nomes)
 console.time('Ordenando Empresas:')
-bubbleSort(empresas)
+bubbleSort(nomes)
 console.timeEnd('Ordenando Empresas:')
 console.log({totTrocas, comps, pass})
-console.log('Depois:', empresas)
+console.log('Depois:', nomes)
