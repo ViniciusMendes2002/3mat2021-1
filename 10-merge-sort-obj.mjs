@@ -1,21 +1,12 @@
-/*
-MERGE SORT
-
-No processo de ordenação este algoritmo "desmonta" o valor original
-contendo N elemnetos até obter N vetores de apenas um elemento cada um.
-Em seguida, usando a técnica de mesclagem (merge), "remonta" o vetor,
-dessa vez com os elementos já em ordem.
-
-*/
-
 let comps = 0, divisoes = 0, juncoes = 0
 
-function mergeSort(vetor){
+function mergeSort(vetor, fnComp){
     
     function mesclar(vetEsq, vetDir){
         let pEsq = 0, pDir = 0, vetRes = []
         while(pEsq < vetEsq.length && pDir < vetDir.length){
-            if(vetEsq[pEsq] < vetDir[pDir]){
+            //if(vetEsq[pEsq] < vetDir[pDir]){
+            if (fnComp(vetDir[pDir], vetEsq[pEsq])){    // Parâmetros invertidos
                 vetRes.push(vetEsq[pEsq])
                 pEsq++
             }
@@ -50,8 +41,8 @@ function mergeSort(vetor){
 
         // Chamadas recursivas à própria função para continuar o processo de desmontagem,
         // volta o processo da linha 13
-        vetEsq = mergeSort(vetEsq)
-        vetDir = mergeSort(vetDir)
+        vetEsq = mergeSort(vetEsq, fnComp)
+        vetDir = mergeSort(vetDir, fnComp)
 
         let vetFinal = mesclar(vetEsq, vetDir)
         juncoes++
@@ -64,22 +55,14 @@ function mergeSort(vetor){
     return vetor
 }
 
-let nums = [7, 4, 9, 0, 6, 1, 8, 2, 5, 3]
+import { candidatos } from './includes/candidatos-2018.mjs'
 
+// Ordenando pelo nome de urna do candidato
 comps = 0, divisoes = 0, juncoes = 0
-
-let numsOrd = mergeSort(nums)
-console.log(numsOrd)
-console.log({comps, divisoes, juncoes})
-
-
-import { nomes } from './includes/100-mil-nomes.mjs'
-
-comps = 0, divisoes = 0, juncoes = 0
-//console.log('Antes:', nomes)
-console.time('Ordenando Nomes:')
-let nomesOrd = mergeSort(nomes)
-console.timeEnd('Ordenando Nomes:')
+//console.log('ANTES:', candidatos)
+console.time('Ordenando por nome de registro:')
+let candidatosOrd = mergeSort(candidatos, (a, b) => a.NM_URNA_CANDIDATO > b.NM_URNA_CANDIDATO)
+console.timeEnd('Ordenando por nome de registro:')
 let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.log({comps, divisoes, juncoes, memoria})
 console.log('Depois:', nomesOrd)
