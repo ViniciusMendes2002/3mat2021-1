@@ -83,4 +83,5 @@ console.timeEnd('Ordenando Nomes:')
 let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.log({comps, divisoes, juncoes, memoria})
 console.log('Depois:', nomesOrd)
+//
 
