@@ -30,40 +30,15 @@ class FormaGeometrica {
     constructor(base, altura, tipo) {
         // base, altura, tipo são os PARÂMETROS do construtor
 
-        // base deve ser numérica e maior que zero
-        if(isNaN(base) || base <= 0)
-        throw new Error('A base deve ser numérica e maior que zero.')
+        //Atribuindo valores iniciais a PROPRIEDADES. O setter de cada
+        // uma delas será chamado, fazendo as validações.
+        this.base = base
+        this.altura = altura
+        this.tipo = tipo
 
-        // altura deve ser numérica e maior que zero
-        if(isNaN(altura) || altura <= 0)
-        throw new Error('A base deve ser numérica e maior que zero.')
 
-        // tipo deve ser 'Q', 'T' ou 'E'
-        if(!['Q', 'T', 'E'].includes(tipo)) {
-            throw new Error('O tipo deve ser Q, T ou E.')
-        }
-
-        /*
-            Se chegamos até aqui, as informações passadas estão corretas e podemos
-            continuar com a criação do objeto.
-            A criação é concluída com o armazenamento dos parâmetros do construtor
-            dentro do próprio objeto, em variáveis especiais denominadas ATRIBUTOS.
-            Dentro do objeto, os atributos são referidos com o prefixo this para
-            diferenciá-los das variáveis comuns.
-        */
-
-        // Atribuindo cada parâmetro do construtor a um atributo do objeto
-
-        // Atributos PÚBLICOS: podem ser acessados e modificados fora da classe
-        //this.base = base
-        //this.altura = altura
-        //this.tipo = tipo
-
-        // Tornando os atributos privados acessíveis apenas dentro da classe e inacessíveis do lado de fora
-
-        this.#base = base
-        this.#altura = altura
-        this.#tipo = tipo
+        // Impede a criação de novas propriedades públicas do lado de fora da classe
+        Object.seal(this)
 
     }
 
@@ -80,6 +55,72 @@ class FormaGeometrica {
 
     get tipo() {
         return this.#tipo
+    }
+
+    /*******************************************************************************************
+     * Quando um atributo tem associado a ele um getter e/ou um setter,
+     * passamos a denominá-lo PROPRIEDADE do objeto.
+     */
+
+    // setter: permite com que o valor do atributo seja alterado, opcionalmente
+    // fazendo algum tipo de validação 
+
+    set base(valor) { // valor é o conteúdo que está TENTANDO entrar no atributo
+        // base deve ser numérica e maior que zero
+        if(isNaN(valor) || valor <= 0)
+            throw new Error('A base deve ser numérica e maior que zero.')
+
+        this.#base = valor
+    }
+
+    set altura(valor){
+        // altura deve ser numérica e maior que zero
+        if(isNaN(valor) || valor <= 0)
+            throw new Error('A altura deve ser numérica e maior que zero.')
+
+        this.#altura = valor
+    }
+
+    set tipo(valor){
+        // tipo deve ser 'Q', 'T' ou 'E'
+        if(!['Q', 'T', 'E'].includes(valor)) {
+            throw new Error('O tipo deve ser Q, T ou E.')
+        }
+
+        this.#tipo = valor
+    }
+
+    /************************************************************/
+    // Método 
+
+    calcularArea() {
+    switch(this.forma) {
+        case 'Q':
+            return this.base * this.altura
+        case 'T':
+            return this.base * this.altura / 2
+        default:
+            return (this.base / 2) * (this.altura / 2) * Math.PI
+
+    }
+}
+
+    /*********************************************************
+        PROPRIEDADE CALCULADA: é uma propriedade somente-leitura (portanto, tem apenas
+        o getter) cujo valor é calculado com base em outros atributos e propriedades.
+        O cálculo acontece "ao vivo", ou seja, é efetuado no momento em que o getter
+        é acionado.
+     *********************************************************/
+
+    get area() {
+        switch(this.forma) {
+            case 'Q':
+                return this.base * this.altura
+            case 'T':
+                return this.base * this.altura / 2
+            default:
+                return (this.base / 2) * (this.altura / 2) * Math.PI
+        }
     }
 
 }
@@ -118,6 +159,24 @@ catch(erro) {
     console.log('ERRO: ' + erro.message)
 }
 
-// Alterando a propriedade área de forma1 após a criação do objeto
+// Tentando adicionar uma propriedade 'descrição' ao objeto. Não dá certo,
+// pois o objeto foi selado no final do construtor, impedindo esse tipo de operação.
 //forma1.base = 'batata'
 //console.log(forma1)
+
+// Lendo o atributo base da forma1 (será acionado o getter)
+console.log('base da forma1:', forma1.base)
+
+// Tentativa de alteração da propriedade base
+forma1.base = 3.6
+//forma1.altura = 'S'
+console.log('base de forma1:' ,forma1.base)
+
+// Cálculo de área via método
+console.log('Área da forma1:' , forma1.calcularArea())
+
+// Cálculo de área via propriedade
+console.log('Área da forma1:' , forma1.area)
+
+forma1.altura = 10
+console.log('Área da forma1:' , forma1.area)
