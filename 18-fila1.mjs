@@ -3,7 +3,6 @@ import { Queue } from './lib/Queue2.mjs'
 let fila = new Queue()
 console.log(fila.print())
 
-
 fila.enqueue('Maria')
 console.log(fila.print())
 
