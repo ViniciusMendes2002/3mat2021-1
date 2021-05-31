@@ -13,3 +13,15 @@
     
     Data de entrega: 26/05, até 11h20, valendo nota de participação
 */
+
+import { LinkedList } from './lib/LinkedList.mjs'
+
+let lista = new LinkedList()
+
+lista.insertTail(1) 
+
+lista.insertTail(2) 
+
+lista.insertTail(3)
+
+console.log(lista.print())

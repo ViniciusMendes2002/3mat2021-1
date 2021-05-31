@@ -4,9 +4,23 @@
     Data de entrega: 26/05, até 11h20, valendo nota de participação
 */
 
-import { Stack } from "./lib/resolucao-exercicio1.mjs";
+// Não consegui chegar ao resultado neste exercício
+
+import { Stack } from './lib/Stack.mjs'
 
 let pilha = new Stack()
 
-let num = '3'
+let expr = '3'
 
+
+while(expr > 0) {
+    rest = expr % 2
+    pilha.push(rest)
+    expr = val / 2
+}
+
+while(! pilha.empty()) {
+    numBinario += pilha.pop()
+}
+
+console.log(pilha.toString())
