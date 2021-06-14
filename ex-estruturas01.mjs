@@ -4,23 +4,27 @@
     Data de entrega: 26/05, até 11h20, valendo nota de participação
 */
 
-// Não consegui chegar ao resultado neste exercício
-
+// Usaremos a estutura pilha
 import { Stack } from './lib/Stack.mjs'
 
-let pilha = new Stack()
+const numDecimal = 2021
 
-let expr = '3'
+let num = numDecimal
 
+const restos = new Stack()
 
-while(expr > 0) {
-    rest = expr % 2
-    pilha.push(rest)
-    expr = val / 2
+while(num > 0) {
+    restos.push(num % 2)        // Empilha o resto da divisão do número por 2
+    // Corta o número pela metade, desprezando as casas decimais
+    num = Math.floor(num / 2)
 }
 
-while(! pilha.empty()) {
-    numBinario += pilha.pop()
+console.log(restos.print())
+
+let binario = ''
+
+while(! restos.empty) {
+    binario += restos.pop()
 }
 
-console.log(pilha.toString())
+console.log(`${numDecimal} em base 10 equivale a ${binario} em base 2.`)
